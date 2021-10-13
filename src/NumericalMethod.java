@@ -24,7 +24,7 @@ public abstract class NumericalMethod {
         return x * y - x * Math.pow(y, 3);
     }
 
-    public NumericalMethod(double x0, double y0, double X, int N) throws IllegalArgumentException{
+    public NumericalMethod(double x0, double y0, double X, int N) throws IllegalArgumentException {
         if((x0 <= 0 && X >= 0) || (x0 >= X) || (N <= 0)) {
             throw new IllegalArgumentException("Arguments are illegal");
         }
@@ -35,5 +35,7 @@ public abstract class NumericalMethod {
         this.step = (X - x0) / N;
         this.point_number = N + 1;
         generate();
+
+        ExactSolution exactSolution = new ExactSolution(x0, y0, X, N);
     }
 }

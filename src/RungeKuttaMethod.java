@@ -1,4 +1,4 @@
-public class RungeKuttaMethod extends NumericalMethod{
+public class RungeKuttaMethod extends NumericalMethod {
     @Override
     protected void generate() {
         double x = x0;
