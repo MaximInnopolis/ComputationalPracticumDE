@@ -1,9 +1,14 @@
 public class ExactSolution extends NumericalMethod {
 
-    private double C;
+    private final double C;
 
     private double findSolution(double x) {
         return (Math.exp(Math.pow(x0, 2) / 2)) / Math.sqrt(this.C + Math.exp(Math.pow(x0, 2)));
+    }
+
+    @Override
+    void calculateLocalError(ExactSolution exactSolution) {
+
     }
 
     @Override
