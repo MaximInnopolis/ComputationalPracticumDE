@@ -14,13 +14,14 @@ public abstract class NumericalMethod extends Solution{
     abstract void calculateLocalTruncationError(ExactSolution exactSolution);
 
     public double calculateGlobalTruncationError(ExactSolution exactSolution) {
-        double max = 0;
+//        double max = 0;
+//
+//        for (int i = 0; i < point_number; ++i) {
+//            double error = Math.abs(y_list.get(i) - exactSolution.getY_list().get(i));
+//            max = Math.max(error, max);
+//        }
+//        return max;
 
-        for (int i = 0; i < point_number; ++i) {
-            double error = Math.abs(y_list.get(i) - exactSolution.getY_list().get(i));
-            max = Math.max(error, max);
-        }
-        return max;
     }
 
     public NumericalMethod(double x0, double y0, double X, int N) {
