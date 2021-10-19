@@ -20,7 +20,7 @@ public class RungeKuttaMethod extends NumericalMethod {
     }
 
     @Override
-    void calculateLocalError(ExactSolution exactSolution) {
+    void calculateLocalTruncationError(ExactSolution exactSolution) {
         double k1, k2, k3, k4;
         local_error_list.add(0.0);
 

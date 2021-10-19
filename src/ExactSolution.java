@@ -1,14 +1,9 @@
-public class ExactSolution extends NumericalMethod {
+public class ExactSolution extends Solution {
 
     private final double C;
 
     private double findSolution(double x) {
-        return (Math.exp(Math.pow(x0, 2) / 2)) / Math.sqrt(this.C + Math.exp(Math.pow(x0, 2)));
-    }
-
-    @Override
-    void calculateLocalError(ExactSolution exactSolution) {
-
+        return (Math.exp(Math.pow(x, 2) / 2)) / Math.sqrt(this.C + Math.exp(Math.pow(x, 2)));
     }
 
     @Override
@@ -22,7 +17,7 @@ public class ExactSolution extends NumericalMethod {
         }
     }
 
-    public ExactSolution(double x0, double y0, double X, int N) throws IllegalArgumentException {
+    public ExactSolution(double x0, double y0, double X, int N) {
         super(x0, y0, X, N);
         this.C = (Math.exp(Math.pow(x0, 2)) / Math.pow(y0, 2)) - Math.exp(Math.pow(x0, 2));
         generate();

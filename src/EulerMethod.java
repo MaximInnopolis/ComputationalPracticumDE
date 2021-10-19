@@ -14,7 +14,7 @@ public class EulerMethod extends NumericalMethod {
     }
 
     @Override
-    void calculateLocalError(ExactSolution exactSolution) {
+    void calculateLocalTruncationError(ExactSolution exactSolution) {
         local_error_list.add(0.0);
 
         for (int i = 1; i < point_number; ++i) {
