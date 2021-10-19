@@ -1,20 +1,18 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.paint.Color;
 import javafx.scene.control.*;
+import javafx.event.EventHandler;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.chart.LineChart;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -27,9 +25,9 @@ public class Main extends Application{
     private static final int N_default = 100;
 
     private static ExactSolution exactSolution = new ExactSolution(x0_default, y0_default, X_default, N_default);
-    private static RungeKuttaMethod rungeKuttaMethod = new RungeKuttaMethod(x0_default, y0_default, X_default, N_default);
     private static EulerMethod eulerMethod = new EulerMethod(x0_default, y0_default, X_default, N_default);
     private static ImprovedEulerMethod improvedEulerMethod = new ImprovedEulerMethod(x0_default, y0_default, X_default, N_default);
+    private static RungeKuttaMethod rungeKuttaMethod = new RungeKuttaMethod(x0_default, y0_default, X_default, N_default);
 
     @Override
     public void start(Stage stage) {
@@ -141,15 +139,15 @@ public class Main extends Application{
 
 
             final NumberAxis errorAxis1 = new NumberAxis();
-            final NumberAxis xAxis2 = new NumberAxis();
+            final NumberAxis xAxis1 = new NumberAxis();
             errorAxis1.setLabel("Error");
-            xAxis2.setLabel("X");
-            final LineChart<Number, Number> newErrorGraph = new LineChart<>(xAxis2, errorAxis1);
+            xAxis1.setLabel("X");
+            final LineChart<Number, Number> newErrorGraph = new LineChart<>(xAxis1, errorAxis1);
             newErrorGraph.setTitle("Comparison of LTE");
 
             newErrorGraph.getData().add(createSeries("Euler's Method", eulerMethod.getX_list(), eulerMethod.getLocal_error_list()));
-            newErrorGraph.getData().add(createSeries("Improved Euler", improvedEulerMethod.getX_list(), improvedEulerMethod.getLocal_error_list()));
-            newErrorGraph.getData().add(createSeries("Runge-Kutta", rungeKuttaMethod.getX_list(), rungeKuttaMethod.getLocal_error_list()));
+            newErrorGraph.getData().add(createSeries("Improved Euler's Method", improvedEulerMethod.getX_list(), improvedEulerMethod.getLocal_error_list()));
+            newErrorGraph.getData().add(createSeries("Runge-Kutta Metod", rungeKuttaMethod.getX_list(), rungeKuttaMethod.getLocal_error_list()));
             newErrorGraph.setCreateSymbols(true);
 
             VBox chartBox1 = (VBox) common.getChildren().get(0);
@@ -201,7 +199,7 @@ public class Main extends Application{
         VBox inputBox = new VBox(15, N_pane, computeButton, invalid_arguments_label);
         inputBox.setMaxWidth(180);
         inputBox.setAlignment(Pos.TOP_CENTER);
-        VBox.setMargin(N_pane, new Insets(8, 0, 0, 0));
+        VBox.setMargin(N_pane, new Insets(10, 0, 0, 0));
 
         final HBox common = new HBox(0, errorChart, inputBox);
         HBox.setHgrow(inputBox, Priority.NEVER);

@@ -19,7 +19,7 @@ public class EulerMethod extends NumericalMethod {
 
         for (int i = 1; i < point_number; ++i) {
             double y_current = exactSolution.getY_list().get(i - 1);
-            double y = y_current + step * myFunction(x_list.get(i), y_current);
+            double y = y_current + step * myFunction(x_list.get(i - 1), y_current);
 
             local_error_list.add(Math.abs(y - exactSolution.getY_list().get(i)));
         }

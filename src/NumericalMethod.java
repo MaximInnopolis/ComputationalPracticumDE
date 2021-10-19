@@ -4,7 +4,7 @@ public abstract class NumericalMethod extends Solution{
     ArrayList<Double> local_error_list = new ArrayList<>();
 
     public ArrayList<Double> getLocal_error_list() {
-        return local_error_list;
+        return this.local_error_list;
     }
 
     double myFunction(double x, double y) {
