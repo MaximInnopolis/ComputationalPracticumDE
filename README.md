@@ -1,3 +1,3 @@
 # ComputationalPracticumDE
 
-Program thats displays graphs of numerical methods for solving differential equations
+Program that displays graphs of numerical methods for solving differential equations
