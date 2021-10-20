@@ -22,7 +22,7 @@ public class Main extends Application{
     private static final double x0_default = 0.0;
     private static final double y0_default = 1 / Math.sqrt(2);
     private static final double X_default = 3.0;
-    private static final int N_default = 100;
+    private static final int N_default = 10;
 
     private static ExactSolution exactSolution = new ExactSolution(x0_default, y0_default, X_default, N_default);
     private static EulerMethod eulerMethod = new EulerMethod(x0_default, y0_default, X_default, N_default);
@@ -53,6 +53,7 @@ public class Main extends Application{
         yAxis.setLabel("Y");
         x1Axis.setLabel("X");
         final LineChart<Number,Number> lineChart = new LineChart<>(x1Axis,yAxis);
+        lineChart.setTitle("Comparison of Numerical Methods");
 
         lineChart.getData().add(createSeries("Euler's Method", eulerMethod.getX_list(), eulerMethod.getY_list()));
         lineChart.getData().add(createSeries("Improved Euler's Method", improvedEulerMethod.getX_list(), improvedEulerMethod.getY_list()));
@@ -65,6 +66,7 @@ public class Main extends Application{
         errorAxis.setLabel("Error");
         x2Axis.setLabel("X");
         final LineChart<Number, Number> errorlineChart = new LineChart<>(x2Axis, errorAxis);
+        errorlineChart.setTitle("Comparison of LTE");
 
         errorlineChart.getData().add(createSeries("Euler's Method", eulerMethod.getX_list(), eulerMethod.getLocal_error_list()));
         errorlineChart.getData().add(createSeries("Improved Euler's Method", improvedEulerMethod.getX_list(), improvedEulerMethod.getLocal_error_list()));
