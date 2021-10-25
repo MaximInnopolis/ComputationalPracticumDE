@@ -22,7 +22,8 @@ public class Main extends Application{
     private static final double x0_default = 0.0;
     private static final double y0_default = 1 / Math.sqrt(2);
     private static final double X_default = 3.0;
-    private static final int N_default = 10;
+    private static final int N_default = 100;
+    private static final int N0_default = 10;
 
     private static ExactSolution exactSolution = new ExactSolution(x0_default, y0_default, X_default, N_default);
     private static EulerMethod eulerMethod = new EulerMethod(x0_default, y0_default, X_default, N_default);
@@ -176,7 +177,7 @@ public class Main extends Application{
         ArrayList<Double> rungeGTE = new ArrayList<>();
         ArrayList<Double> nValues = new ArrayList<>();
 
-        for (int i = 0; i <= N_default; ++i) {
+        for (int i = N0_default; i <= N_default; ++i) {
             ExactSolution exactSolution = new ExactSolution(x0_default, y0_default, X_default, i);
             nValues.add((double) i);
             eulerGTE.add(new EulerMethod(x0_default, y0_default, X_default, i).calculateGlobalTruncationError(exactSolution));
@@ -188,6 +189,10 @@ public class Main extends Application{
         errorChart.getData().add(createSeries("Improved Euler's Method", nValues, improvedGTE));
         errorChart.getData().add(createSeries("Runge-Kutta Method", nValues, rungeGTE));
 
+        final Label N0_label = new Label("N0:");
+        final TextField N0_text_field = new TextField(String.valueOf(N0_default));
+        final FlowPane N0_pane = new FlowPane(10, 10, N0_label, N0_text_field);
+
         final Label N_label = new Label("N:");
         final TextField N_text_field = new TextField(String.valueOf(N_default));
         final FlowPane N_pane = new FlowPane(10, 10, N_label, N_text_field);
@@ -198,10 +203,10 @@ public class Main extends Application{
 
         Button computeButton = new Button("Compute");
 
-        VBox inputBox = new VBox(15, N_pane, computeButton, invalid_arguments_label);
+        VBox inputBox = new VBox(15, N0_pane, N_pane, computeButton, invalid_arguments_label);
         inputBox.setMaxWidth(180);
         inputBox.setAlignment(Pos.TOP_CENTER);
-        VBox.setMargin(N_pane, new Insets(10, 0, 0, 0));
+        VBox.setMargin(N0_pane, new Insets(10, 0, 0, 0));
 
         final HBox common = new HBox(0, errorChart, inputBox);
         HBox.setHgrow(inputBox, Priority.NEVER);
@@ -209,9 +214,12 @@ public class Main extends Application{
 
         computeButton.setOnAction(actionEvent -> {
             invalid_arguments_label.setVisible(false);
-            int N;
+            int N0, N;
             try {
                 N = Integer.parseInt(N_text_field.getText());
+                N0 = Integer.parseInt(N0_text_field.getText());
+//                if ((N0 <= 0) || (N0 >= N))
+//                    throw new IllegalArgumentException();
             } catch (IllegalArgumentException e) {
                 invalid_arguments_label.setVisible(true);
                 return;
@@ -229,7 +237,7 @@ public class Main extends Application{
             ArrayList<Double> rungeGTE1 = new ArrayList<>();
             ArrayList<Double> nValues1 = new ArrayList<>();
 
-            for (int i = 0; i <= N; ++i) {
+            for (int i = N0; i <= N; ++i) {
                 ExactSolution exactSolution = new ExactSolution(x0_default, y0_default, X_default, i);
                 nValues1.add((double) i);
                 eulerGTE1.add(new EulerMethod(x0_default, y0_default, X_default, i).calculateGlobalTruncationError(exactSolution));
