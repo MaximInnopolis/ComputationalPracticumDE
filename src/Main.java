@@ -218,8 +218,8 @@ public class Main extends Application{
             try {
                 N = Integer.parseInt(N_text_field.getText());
                 N0 = Integer.parseInt(N0_text_field.getText());
-//                if ((N0 <= 0) || (N0 >= N))
-//                    throw new IllegalArgumentException();
+                if ((N0 <= 0) || (N0 >= N))
+                    throw new IllegalArgumentException();
             } catch (IllegalArgumentException e) {
                 invalid_arguments_label.setVisible(true);
                 return;
@@ -231,6 +231,7 @@ public class Main extends Application{
             xAxis1.setLabel("N");
 
             LineChart<Number,Number> newErrorChart = new LineChart<>(xAxis1, yAxis1);
+            newErrorChart.setTitle("Comparison of GTE");
 
             ArrayList<Double> eulerGTE1 = new ArrayList<>();
             ArrayList<Double> improvedGTE1 = new ArrayList<>();
@@ -253,8 +254,7 @@ public class Main extends Application{
             common.getChildren().set(0, newErrorChart);
             HBox.setHgrow(newErrorChart, Priority.ALWAYS);
         });
-
-        errorChart.setTitle("Global Truncation Error");
+        errorChart.setTitle("Comparison of GTE");
         common.setAlignment(Pos.CENTER);
         return common;
     }
